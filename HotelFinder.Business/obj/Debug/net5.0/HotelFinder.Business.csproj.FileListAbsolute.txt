@@ -1,0 +1,17 @@
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.Business.deps.json
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.Business.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.Business.pdb
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.DataAccess.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.Entities.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.DataAccess.pdb
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\bin\Debug\net5.0\HotelFinder.Entities.pdb
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.csproj.AssemblyReference.cache
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.AssemblyInfoInputs.cache
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.AssemblyInfo.cs
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.csproj.CoreCompileInputs.cache
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.csproj.CopyComplete
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\refint\HotelFinder.Business.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.pdb
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\ref\HotelFinder.Business.dll
