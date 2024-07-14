@@ -12,3 +12,4 @@ D:\VStudioProjects\HotelFinder\HotelFinder.Entities\obj\Debug\net5.0\ref\HotelFi
 D:\VStudioProjects\HotelFinder\HotelFinder.Entities\bin\Debug\net5.0\HotelFinder.Entities.runtimeconfig.json
 D:\VStudioProjects\HotelFinder\HotelFinder.Entities\bin\Debug\net5.0\HotelFinder.Entities.runtimeconfig.dev.json
 D:\VStudioProjects\HotelFinder\HotelFinder.Entities\obj\Debug\net5.0\HotelFinder.Entities.genruntimeconfig.cache
+D:\VStudioProjects\HotelFinder\HotelFinder.Entities\obj\Debug\net5.0\HotelFinder.Entities.sourcelink.json

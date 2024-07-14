@@ -25,15 +25,8 @@ namespace HotelFinder.DataAccess.Concrete
             using (var hotelDbContext = new HotelDbContext())
             {
                 var deletedHotel = GetHotelById(id);
-                if (deletedHotel != null)
-                {
-                    hotelDbContext.Hotels.Remove(deletedHotel);
-                    hotelDbContext.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Can not find hotel.");
-                }
+                hotelDbContext.Hotels.Remove(deletedHotel);
+                hotelDbContext.SaveChanges();
             }
         }
 
@@ -49,6 +42,14 @@ namespace HotelFinder.DataAccess.Concrete
             using (var hotelDbContext = new HotelDbContext())
             {
                 return hotelDbContext.Hotels.Find(id);
+            }
+        }
+
+        public Hotel GetHotelByName(string name)
+        {
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                return hotelDbContext.Hotels.FirstOrDefault(x=>x.Name.ToLower()==name.ToLower());
             }
         }
 
