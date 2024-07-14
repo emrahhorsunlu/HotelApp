@@ -15,3 +15,4 @@ D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder
 D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\refint\HotelFinder.Business.dll
 D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.pdb
 D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\ref\HotelFinder.Business.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.Business\obj\Debug\net5.0\HotelFinder.Business.sourcelink.json

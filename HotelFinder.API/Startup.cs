@@ -23,6 +23,7 @@ namespace HotelFinder.API
             services.AddControllers();
             services.AddSingleton<IHotelService, HotelManager>();
             services.AddSingleton<IHotelRepository, HotelRepository>();
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +35,8 @@ namespace HotelFinder.API
             }
 
             app.UseRouting();
-
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

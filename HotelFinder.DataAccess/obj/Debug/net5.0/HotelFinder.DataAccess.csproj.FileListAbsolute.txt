@@ -16,3 +16,4 @@ D:\VStudioProjects\HotelFinder\HotelFinder.DataAccess\obj\Debug\net5.0\refint\Ho
 D:\VStudioProjects\HotelFinder\HotelFinder.DataAccess\obj\Debug\net5.0\HotelFinder.DataAccess.pdb
 D:\VStudioProjects\HotelFinder\HotelFinder.DataAccess\obj\Debug\net5.0\HotelFinder.DataAccess.genruntimeconfig.cache
 D:\VStudioProjects\HotelFinder\HotelFinder.DataAccess\obj\Debug\net5.0\ref\HotelFinder.DataAccess.dll
+D:\VStudioProjects\HotelFinder\HotelFinder.DataAccess\obj\Debug\net5.0\HotelFinder.DataAccess.sourcelink.json

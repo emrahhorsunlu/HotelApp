@@ -2,7 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSwag.AspNetCore" Version="13.5.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HotelFinder.Business\HotelFinder.Business.csproj" />

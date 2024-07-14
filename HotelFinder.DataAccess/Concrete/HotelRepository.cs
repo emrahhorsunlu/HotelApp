@@ -25,8 +25,15 @@ namespace HotelFinder.DataAccess.Concrete
             using (var hotelDbContext = new HotelDbContext())
             {
                 var deletedHotel = GetHotelById(id);
-                hotelDbContext.Hotels.Remove(deletedHotel);
-                hotelDbContext.SaveChanges();
+                if (deletedHotel != null)
+                {
+                    hotelDbContext.Hotels.Remove(deletedHotel);
+                    hotelDbContext.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Can not find hotel.");
+                }
             }
         }
 
