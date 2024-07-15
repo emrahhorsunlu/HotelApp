@@ -2152,6 +2152,9 @@
         }
       },
       "Reservation.Entities/1.0.0": {
+        "dependencies": {
+          "HotelFinder.Entities": "1.0.0"
+        },
         "runtime": {
           "Reservation.Entities.dll": {}
         },

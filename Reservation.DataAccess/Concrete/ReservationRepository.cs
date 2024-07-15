@@ -1,4 +1,5 @@
-﻿using Reservation.DataAccess.Abstract;
+﻿using HotelFinder.Entities;
+using Reservation.DataAccess.Abstract;
 using Reservation.Entities;
 using System;
 using System.Collections.Generic;

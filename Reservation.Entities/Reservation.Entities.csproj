@@ -11,4 +11,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HotelFinder.Entities\HotelFinder.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

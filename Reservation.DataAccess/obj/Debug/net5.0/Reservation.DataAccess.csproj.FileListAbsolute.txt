@@ -17,3 +17,5 @@ D:\VStudioProjects\HotelFinder\Reservation.DataAccess\obj\Debug\net5.0\refint\Re
 D:\VStudioProjects\HotelFinder\Reservation.DataAccess\obj\Debug\net5.0\Reservation.DataAccess.pdb
 D:\VStudioProjects\HotelFinder\Reservation.DataAccess\obj\Debug\net5.0\Reservation.DataAccess.genruntimeconfig.cache
 D:\VStudioProjects\HotelFinder\Reservation.DataAccess\obj\Debug\net5.0\ref\Reservation.DataAccess.dll
+D:\VStudioProjects\HotelFinder\Reservation.DataAccess\bin\Debug\net5.0\HotelFinder.Entities.dll
+D:\VStudioProjects\HotelFinder\Reservation.DataAccess\bin\Debug\net5.0\HotelFinder.Entities.pdb

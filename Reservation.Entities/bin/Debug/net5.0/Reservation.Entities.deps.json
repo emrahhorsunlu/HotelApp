@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Reservation.Entities/1.0.0": {
         "dependencies": {
+          "HotelFinder.Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "3.1.0"
         },
         "runtime": {
@@ -204,7 +205,12 @@
       },
       "System.Collections.Immutable/1.7.0": {},
       "System.ComponentModel.Annotations/4.7.0": {},
-      "System.Diagnostics.DiagnosticSource/4.7.0": {}
+      "System.Diagnostics.DiagnosticSource/4.7.0": {},
+      "HotelFinder.Entities/1.0.0": {
+        "runtime": {
+          "HotelFinder.Entities.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -366,6 +372,11 @@
       "sha512": "sha512-oJjw3uFuVDJiJNbCD8HB4a2p3NYLdt1fiT5OGsPLw+WTOuG0KpP4OXelMmmVKpClueMsit6xOlzy4wNKQFiBLg==",
       "path": "system.diagnostics.diagnosticsource/4.7.0",
       "hashPath": "system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512"
+    },
+    "HotelFinder.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

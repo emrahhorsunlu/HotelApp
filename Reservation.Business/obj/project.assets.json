@@ -1692,6 +1692,16 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "HotelFinder.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/HotelFinder.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HotelFinder.Entities.dll": {}
+        }
+      },
       "Reservation.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -1709,6 +1719,9 @@
       "Reservation.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "HotelFinder.Entities": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Reservation.Entities.dll": {}
         },
@@ -5891,6 +5904,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "HotelFinder.Entities/1.0.0": {
+      "type": "project",
+      "path": "../HotelFinder.Entities/HotelFinder.Entities.csproj",
+      "msbuildProject": "../HotelFinder.Entities/HotelFinder.Entities.csproj"
     },
     "Reservation.DataAccess/1.0.0": {
       "type": "project",

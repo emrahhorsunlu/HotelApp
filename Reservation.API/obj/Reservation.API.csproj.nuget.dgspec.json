@@ -263,17 +263,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.5.1, )"
-            },
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.5.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -470,7 +462,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\VStudioProjects\\HotelFinder\\HotelFinder.Entities\\HotelFinder.Entities.csproj": {
+                "projectPath": "D:\\VStudioProjects\\HotelFinder\\HotelFinder.Entities\\HotelFinder.Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
