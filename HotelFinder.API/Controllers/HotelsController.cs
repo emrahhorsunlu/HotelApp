@@ -19,8 +19,7 @@ namespace HotelFinder.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var hotels = _hotelService.GetAllHotels();
-            return Ok(hotels); // 200 + Data
+            return Ok(_hotelService.GetAllHotels()); // 200 + Data
         }
 
         [HttpGet]
@@ -50,7 +49,7 @@ namespace HotelFinder.API.Controllers
         public IActionResult CreateHotel([FromBody]Hotel hotel)
         {
              var createdHotel = _hotelService.CreateHotel(hotel);
-             return CreatedAtAction("Get", new { id=createdHotel.Id },createdHotel); // 201 + data (Result Headers'ın içerisinde, oluşturulan Hotel'in urlsini döndürür.)
+             return CreatedAtAction("Get", new { id=createdHotel.Id },createdHotel); // 201 + Created Hotel ID in Header
         }
 
         [HttpPost]
@@ -72,7 +71,6 @@ namespace HotelFinder.API.Controllers
                 _hotelService.DeleteHotel(id);
                 return Ok(); // 200
             }
-
             return NotFound();
         }
 

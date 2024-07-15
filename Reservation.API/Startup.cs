@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Reservation.Business.Abstract;
+using Reservation.Business.Concrete;
+using Reservation.DataAccess.Abstract;
+using Reservation.DataAccess.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +20,26 @@ namespace Reservation.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddSingleton<IReservationService, ReservationManager>();
+            services.AddSingleton<IReservationRepository, ReservationRepository>();
+            services.AddSwaggerDocument(config =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Reservation.API", Version = "v1" });
+                config.PostProcess = (doc =>
+                {
+                    doc.Info.Title = "All Reservations Api";
+                    doc.Info.Version = "1.0.1";
+                    doc.Info.Contact = new NSwag.OpenApiContact()
+                    {
+                        Name = "Emrah Horsunlu",
+                        Url = "https://github.com/emrahhorsunlu",
+                        Email = "emrahhorsunlu@gmail.com"
+                    };
+                });
             });
         }
 
@@ -40,16 +49,12 @@ namespace Reservation.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reservation.API v1"));
             }
 
-            //app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

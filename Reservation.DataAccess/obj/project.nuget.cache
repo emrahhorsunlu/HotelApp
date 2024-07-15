@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pWPnpAgEOY6aM99lx7Dt0PnbupLeSikH/ZB9jypvoKpmbug+QHF5boBzuA+mNB7Qwi42Sq5IpI5h2j6LGQC3eg==",
+  "dgSpecHash": "nSzvkEvTWMsFZXiDTT1x2v01KXLOt76/3GO8ZvI4EFj7Tx3Nk8tJQUSlGHFugC7Ef8dnEakcgho5d2rH/FnoWQ==",
   "success": true,
   "projectFilePath": "D:\\VStudioProjects\\HotelFinder\\Reservation.DataAccess\\Reservation.DataAccess.csproj",
   "expectedPackageFiles": [
@@ -11,10 +11,10 @@
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.30\\microsoft.entityframeworkcore.3.1.30.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.30\\microsoft.entityframeworkcore.abstractions.3.1.30.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.30\\microsoft.entityframeworkcore.analyzers.3.1.30.nupkg.sha512",
-    "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.30\\microsoft.entityframeworkcore.design.3.1.30.nupkg.sha512",
+    "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.3\\microsoft.entityframeworkcore.design.3.1.3.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.30\\microsoft.entityframeworkcore.relational.3.1.30.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.30\\microsoft.entityframeworkcore.sqlserver.3.1.30.nupkg.sha512",
-    "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.30\\microsoft.entityframeworkcore.tools.3.1.30.nupkg.sha512",
+    "C:\\Users\\emrah\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.3\\microsoft.entityframeworkcore.tools.3.1.3.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.30\\microsoft.extensions.caching.abstractions.3.1.30.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.30\\microsoft.extensions.caching.memory.3.1.30.nupkg.sha512",
     "C:\\Users\\emrah\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.30\\microsoft.extensions.configuration.3.1.30.nupkg.sha512",

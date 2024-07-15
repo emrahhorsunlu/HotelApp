@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <ProjectReference Include="..\Reservation.DataAccess\Reservation.DataAccess.csproj" />
+    <ProjectReference Include="..\Reservation.Entities\Reservation.Entities.csproj" />
   </ItemGroup>
 
 </Project>
