@@ -17,25 +17,23 @@ namespace Reservation.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GeAllReservations()
         {
             return Ok(_reservationService.GetAllReservations()); // 200 + Data
         }
 
-        [HttpGet]
-        [Route("[action]/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetReservationByID(int id) 
         { 
             var result = _reservationService.GetReservationById(id);
-            if(result == null)
+            if(result != null)
             {
                 return Ok(result); // 200 + data
             }
             return NotFound(); // 404
         }
 
-        [HttpPost]
-        [Route("[action]")]
+        [HttpPost("update")]
         public IActionResult UpdateReservation([FromBody] Reservation.Entities.Reservation reservation)
         {
             var result = _reservationService.GetReservationById(reservation.Id); 
@@ -46,16 +44,14 @@ namespace Reservation.API.Controllers
             return NotFound();
         }
 
-        [HttpPost]
-        [Route("[action]")]
+        [HttpPost("create")]
         public IActionResult CreateReservation([FromBody] Reservation.Entities.Reservation reservation)
         {
             var createdReservation = _reservationService.CreateReservation(reservation);
-            return CreatedAtAction("Get", new { id = createdReservation.Id }, createdReservation); // 201 + Created Reservation ID in Header
+            return CreatedAtAction("GetReservationByID", new { id = createdReservation.Id }, createdReservation); // 201 + Created Reservation ID in Header
         }
 
-        [HttpGet]
-        [Route("[action]/{id}")]
+        [HttpGet("{id}/delete")]
         public IActionResult DeleteReservation(int id)
         {
             var deletedReservation = _reservationService.GetReservationById(id);

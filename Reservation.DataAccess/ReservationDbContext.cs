@@ -14,7 +14,6 @@ namespace Reservation.DataAccess
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Server=localhost; Database=HotelDb;uid=sa;pwd=1234;");
         }
-
         public DbSet<Entities.Reservation> Reservations { get; set;}
     }
 }

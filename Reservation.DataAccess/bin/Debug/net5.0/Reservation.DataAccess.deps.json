@@ -9,7 +9,7 @@
       "Reservation.DataAccess/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.30",
-          "Microsoft.EntityFrameworkCore.Tools": "3.1.30",
+          "Microsoft.EntityFrameworkCore.Tools": "3.1.3",
           "Reservation.Entities": "1.0.0"
         },
         "runtime": {
@@ -95,15 +95,15 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/3.1.30": {},
-      "Microsoft.EntityFrameworkCore.Design/3.1.30": {
+      "Microsoft.EntityFrameworkCore.Design/3.1.3": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "Microsoft.EntityFrameworkCore.Relational": "3.1.30"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "3.1.30.0",
-            "fileVersion": "3.100.3022.47610"
+            "assemblyVersion": "3.1.3.0",
+            "fileVersion": "3.100.320.12804"
           }
         }
       },
@@ -130,9 +130,9 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/3.1.30": {
+      "Microsoft.EntityFrameworkCore.Tools/3.1.3": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "3.1.30"
+          "Microsoft.EntityFrameworkCore.Design": "3.1.3"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/3.1.30": {
@@ -1081,12 +1081,12 @@
       "path": "microsoft.entityframeworkcore.analyzers/3.1.30",
       "hashPath": "microsoft.entityframeworkcore.analyzers.3.1.30.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Design/3.1.30": {
+    "Microsoft.EntityFrameworkCore.Design/3.1.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UcfdL+FiflqEEpy/m9IJI/0WvoX+P2SwjU31ZT8uE0OOJlNd8F6x47rdZhNtVo2So0O19M+950lghaHTAinDaQ==",
-      "path": "microsoft.entityframeworkcore.design/3.1.30",
-      "hashPath": "microsoft.entityframeworkcore.design.3.1.30.nupkg.sha512"
+      "sha512": "sha512-T0d+lFCf0UUHkl9trdUosjyqa4/yMlVRwPOTXJAKZxkkJ2Mgl98IK+e4dsVyYdZaVukVnT7xhh5j7Qs21rJ45g==",
+      "path": "microsoft.entityframeworkcore.design/3.1.3",
+      "hashPath": "microsoft.entityframeworkcore.design.3.1.3.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/3.1.30": {
       "type": "package",
@@ -1102,12 +1102,12 @@
       "path": "microsoft.entityframeworkcore.sqlserver/3.1.30",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.3.1.30.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/3.1.30": {
+    "Microsoft.EntityFrameworkCore.Tools/3.1.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8rLsh7pjMhthwRDnwrwmwSMALhLSi+tOcCxSCdPH0CpoJLijb3GhZJQMpkjaUnjjUf64DDPW9COhRfzzfHutEw==",
-      "path": "microsoft.entityframeworkcore.tools/3.1.30",
-      "hashPath": "microsoft.entityframeworkcore.tools.3.1.30.nupkg.sha512"
+      "sha512": "sha512-/VSHVXwg8Zu5gJILvcEIVjmpQbuUg6+SEwU6pFa/RtXMPD+QSgAuzRYIfDbeVHjJuQxK3nRwkTFxorO254BLLw==",
+      "path": "microsoft.entityframeworkcore.tools/3.1.3",
+      "hashPath": "microsoft.entityframeworkcore.tools.3.1.3.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/3.1.30": {
       "type": "package",

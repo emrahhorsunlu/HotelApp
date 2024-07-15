@@ -12,6 +12,11 @@ namespace Reservation.Business.Concrete
     public class ReservationManager : IReservationService
     {
         private IReservationRepository _reservationRepository;
+
+        public ReservationManager(IReservationRepository reservationRepository)
+        {
+            _reservationRepository = reservationRepository;
+        }
         public Entities.Reservation CreateReservation(Entities.Reservation reservation)
         {
             return _reservationRepository.CreateReservation(reservation);
