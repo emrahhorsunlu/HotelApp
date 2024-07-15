@@ -58,7 +58,7 @@ namespace Reservation.API.Controllers
             if(deletedReservation != null)
             {
                 _reservationService.DeleteReservation(id);
-                return Ok();
+                return Ok(deletedReservation);
             }
             return NotFound();
         }

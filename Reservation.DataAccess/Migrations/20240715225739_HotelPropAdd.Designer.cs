@@ -10,8 +10,8 @@ using Reservation.DataAccess;
 namespace Reservation.DataAccess.Migrations
 {
     [DbContext(typeof(ReservationDbContext))]
-    [Migration("20240715144405_initialCreate")]
-    partial class initialCreate
+    [Migration("20240715225739_HotelPropAdd")]
+    partial class HotelPropAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,28 @@ namespace Reservation.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "3.1.30")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("HotelFinder.Entities.Hotel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hotel");
+                });
 
             modelBuilder.Entity("Reservation.Entities.Reservation", b =>
                 {
@@ -31,12 +53,26 @@ namespace Reservation.DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HotelId");
+
                     b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("Reservation.Entities.Reservation", b =>
+                {
+                    b.HasOne("HotelFinder.Entities.Hotel", "Hotel")
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
