@@ -2,6 +2,7 @@
 using HotelFinder.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace HotelFinder.DataAccess.Concrete
 {
     public class HotelRepository : IHotelRepository
     {
+        
         public Hotel CreateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())
