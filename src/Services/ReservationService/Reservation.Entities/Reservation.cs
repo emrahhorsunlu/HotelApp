@@ -11,6 +11,8 @@ namespace Reservation.Entities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
+        public int HotelId { get; set; }
+        [Required]
         public DateTime Date { get; set; }
         public bool Status { get; set; }
         

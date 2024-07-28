@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	  <ProjectReference Include="..\..\HotelService\HotelFinder.Business\HotelFinder.Business.csproj" />
 	  <ProjectReference Include="..\Reservation.Business\Reservation.Business.csproj" />
 	  <ProjectReference Include="..\Reservation.Entities\Reservation.Entities.csproj" />
   </ItemGroup>

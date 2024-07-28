@@ -32,9 +32,19 @@ namespace Reservation.API.Controllers
             }
             return NotFound(); // 404
         }
+        [HttpGet("hotel/{id}")]
+        public IActionResult GetReservationByHotelID(int id)
+        {
+            var result = _reservationService.GetReservationsByHotelId(id);
+            if (result != null)
+            {
+                return Ok(result); // 200 + data
+            }
+            return NotFound(); // 404
+        }
 
         [HttpPost("update")]
-        public IActionResult UpdateReservation([FromBody] Reservation.Entities.Reservation reservation)
+        public IActionResult UpdateReservation([FromBody] Entities.Reservation reservation)
         {
             var result = _reservationService.GetReservationById(reservation.Id); 
             if(result != null) 
@@ -45,10 +55,15 @@ namespace Reservation.API.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult CreateReservation([FromBody] Reservation.Entities.Reservation reservation)
+        public IActionResult CreateReservation([FromBody] Entities.Reservation reservation)
         {
             var createdReservation = _reservationService.CreateReservation(reservation);
-            return CreatedAtAction("GetReservationByID", new { id = createdReservation.Id }, createdReservation); // 201 + Created Reservation ID in Header
+            if(createdReservation != null)
+            {
+                return CreatedAtAction("GetReservationByID", new { id = createdReservation.Id }, createdReservation); // 201 + Oluşturulan Rezervasyonun Bilgileri Header'a Gelir
+            }
+            return NotFound();
+            
         }
 
         [HttpGet("{id}/delete")]

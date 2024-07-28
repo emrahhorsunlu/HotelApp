@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HotelService\HotelFinder.DataAccess\HotelFinder.DataAccess.csproj" />
     <ProjectReference Include="..\..\HotelService\HotelFinder.Entities\HotelFinder.Entities.csproj" />
     <ProjectReference Include="..\Reservation.Entities\Reservation.Entities.csproj" />
 	 

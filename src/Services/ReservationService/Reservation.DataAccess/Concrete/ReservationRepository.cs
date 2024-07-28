@@ -1,12 +1,10 @@
-﻿using HotelFinder.Entities;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Reservation.DataAccess.Abstract;
 using Reservation.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Reservation.DataAccess.Concrete
 {
@@ -14,10 +12,25 @@ namespace Reservation.DataAccess.Concrete
     {
         public Entities.Reservation CreateReservation(Entities.Reservation reservation)
         {
+            
             using (var reservationDbContext = new ReservationDbContext())
             {
-                reservationDbContext.Reservations.Add(reservation);
-                reservationDbContext.SaveChanges();
+                var hotelIdParameter = new SqlParameter("@HotelId", reservation.HotelId);
+                var dateParameter = new SqlParameter("@Date", reservation.Date);
+                var statusParameter = new SqlParameter("@Status", reservation.Status);
+                var newReservationIdParameter = new SqlParameter
+                {
+                    ParameterName = "@NewReservationId",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                reservationDbContext.Database.ExecuteSqlRaw(
+                    "EXEC CreateReservation @HotelId, @Date, @Status, @NewReservationId OUTPUT",
+                    hotelIdParameter, dateParameter, statusParameter, newReservationIdParameter);
+
+                reservation.Id = (int)newReservationIdParameter.Value;
+
                 return reservation;
             }
         }
@@ -26,9 +39,11 @@ namespace Reservation.DataAccess.Concrete
         {
             using (var reservationDbContext = new ReservationDbContext())
             {
-                var deletedReservation = GetReservationById(id);
-                reservationDbContext.Remove(deletedReservation);
-                reservationDbContext.SaveChanges();
+                var idParameter = new SqlParameter("@Id", id);
+
+                reservationDbContext.Database.ExecuteSqlRaw(
+                    "EXEC DeleteReservation @Id",
+                    idParameter);
             }
         }
 
@@ -36,7 +51,11 @@ namespace Reservation.DataAccess.Concrete
         {
             using (var reservationDbContext = new ReservationDbContext())
             {
-                return reservationDbContext.Reservations.ToList();
+                var reservations = reservationDbContext.Reservations
+                    .FromSqlRaw("EXEC GetAllReservations")
+                    .ToList();
+
+                return reservations;
             }
         }
 
@@ -44,7 +63,13 @@ namespace Reservation.DataAccess.Concrete
         {
             using (var reservationDbContext = new ReservationDbContext())
             {
-                var reservation = reservationDbContext.Reservations.Find(id);
+                var idParameter = new SqlParameter("@Id", id);
+
+                var reservation = reservationDbContext.Reservations
+                    .FromSqlRaw("EXEC GetReservationById @Id", idParameter)
+                    .AsEnumerable()
+                    .FirstOrDefault();
+
                 return reservation;
             }
         }
@@ -53,7 +78,27 @@ namespace Reservation.DataAccess.Concrete
         {
             using (var reservationDbContext = new ReservationDbContext())
             {
-                return reservationDbContext.Reservations.Where(x => x.Status == status).ToList();
+                var statusParameter = new SqlParameter("@Status", status);
+
+                var reservations = reservationDbContext.Reservations
+                    .FromSqlRaw("EXEC GetReservationsByStatus @Status", statusParameter)
+                    .ToList();
+
+                return reservations;
+            }
+        }
+
+        public List<Entities.Reservation> GetReservationsByHotelId(int id)
+        {
+            using (var reservationDbContext = new ReservationDbContext())
+            {
+                var hotelIdParameter = new SqlParameter("@HotelId", id);
+
+                var reservations = reservationDbContext.Reservations
+                    .FromSqlRaw("EXEC GetReservationsByHotelId @HotelId", hotelIdParameter)
+                    .ToList();
+
+                return reservations;
             }
         }
 
@@ -61,9 +106,18 @@ namespace Reservation.DataAccess.Concrete
         {
             using (var reservationDbContext = new ReservationDbContext())
             {
-                var updatedReservation = GetReservationById(reservation.Id);
-                reservationDbContext.Update(updatedReservation);
-                reservationDbContext.SaveChanges();
+                var idParameter = new SqlParameter("@Id", reservation.Id);
+                var hotelIdParameter = new SqlParameter("@HotelId", reservation.HotelId);
+                var dateParameter = new SqlParameter("@Date", reservation.Date);
+                var statusParameter = new SqlParameter("@Status", reservation.Status);
+
+                reservationDbContext.Database.ExecuteSqlRaw(
+                    "EXEC UpdateReservation @Id, @HotelId, @Date, @Status",
+                    idParameter, hotelIdParameter, dateParameter, statusParameter);
+
+                var updatedReservation = reservationDbContext.Reservations
+                    .FirstOrDefault(r => r.Id == reservation.Id);
+
                 return updatedReservation;
             }
         }

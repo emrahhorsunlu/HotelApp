@@ -1,5 +1,7 @@
 ﻿using HotelFinder.DataAccess.Abstract;
 using HotelFinder.Entities;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
@@ -16,8 +18,25 @@ namespace HotelFinder.DataAccess.Concrete
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                hotelDbContext.Hotels.Add(hotel);
-                hotelDbContext.SaveChanges();
+                var command = hotelDbContext.Database.GetDbConnection().CreateCommand();
+                command.CommandText = "CreateHotel";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter("@Name", hotel.Name));
+                command.Parameters.Add(new SqlParameter("@City", hotel.City));
+                var newHotelIdParameter = new SqlParameter
+                {
+                    ParameterName = "@NewHotelId",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Output
+                };
+                command.Parameters.Add(newHotelIdParameter);
+
+                hotelDbContext.Database.OpenConnection();
+                command.ExecuteNonQuery();
+
+                hotel.Id = (int)newHotelIdParameter.Value;
+
                 return hotel;
             }
         }
@@ -26,16 +45,18 @@ namespace HotelFinder.DataAccess.Concrete
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                var deletedHotel = GetHotelById(id);
-                hotelDbContext.Hotels.Remove(deletedHotel);
-                hotelDbContext.SaveChanges();
+                hotelDbContext.Database.ExecuteSqlInterpolated($"EXEC DeleteHotelById {id}");
             }
         }
 
         public List<Hotel> GetAllHotels()
         {
-            using(var hotelDbContext=new HotelDbContext()){
-                return hotelDbContext.Hotels.ToList();
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                var hotels = hotelDbContext.Hotels
+                                           .FromSqlInterpolated($"EXEC GetAllHotels")
+                                           .ToList();
+                return hotels;
             }
         }
 
@@ -43,7 +64,12 @@ namespace HotelFinder.DataAccess.Concrete
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.Find(id);
+                var hotels = hotelDbContext.Hotels
+                                           .FromSqlInterpolated($"EXEC GetHotelById {id}")
+                                           .AsEnumerable();
+
+                var hotel = hotels.FirstOrDefault();
+                return hotel;
             }
         }
 
@@ -51,7 +77,12 @@ namespace HotelFinder.DataAccess.Concrete
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.FirstOrDefault(x=>x.Name.ToLower()==name.ToLower());
+                var hotels = hotelDbContext.Hotels
+                                           .FromSqlInterpolated($"EXEC GetHotelByName {name}")
+                                           .AsEnumerable();
+
+                var hotel = hotels.FirstOrDefault();
+                return hotel;
             }
         }
 
@@ -59,8 +90,14 @@ namespace HotelFinder.DataAccess.Concrete
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                hotelDbContext.Hotels.Update(hotel);
-                hotelDbContext.SaveChanges();
+                var idParameter = new SqlParameter("@Id", hotel.Id);
+                var nameParameter = new SqlParameter("@Name", hotel.Name);
+                var cityParameter = new SqlParameter("@City", hotel.City);
+
+                hotelDbContext.Database.ExecuteSqlRaw(
+                    "EXEC UpdateHotel @Id, @Name, @City",
+                    idParameter, nameParameter, cityParameter);
+
                 return hotel;
             }
         }

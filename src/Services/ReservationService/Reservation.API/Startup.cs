@@ -1,3 +1,7 @@
+using HotelFinder.Business.Abstract;
+using HotelFinder.Business.Concrete;
+using HotelFinder.DataAccess.Abstract;
+using HotelFinder.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,10 +22,11 @@ namespace Reservation.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSingleton<IReservationService, ReservationManager>();
             services.AddSingleton<IReservationRepository, ReservationRepository>();
+            services.AddSingleton<IHotelService, HotelManager>();
+            services.AddSingleton<IHotelRepository, HotelRepository>();
             services.AddSwaggerDocument(config =>
             {
                 config.PostProcess = (doc =>

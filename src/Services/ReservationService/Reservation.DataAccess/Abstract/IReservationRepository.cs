@@ -1,9 +1,4 @@
-﻿using Reservation.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Reservation.DataAccess.Abstract
 {
@@ -11,6 +6,7 @@ namespace Reservation.DataAccess.Abstract
     public interface IReservationRepository
     {
         List<Entities.Reservation> GetAllReservations();
+        List<Entities.Reservation> GetReservationsByHotelId(int id);
         Entities.Reservation GetReservationById(int id);
         List<Entities.Reservation> GetReservationByStatus(bool status);
         Entities.Reservation CreateReservation(Entities.Reservation reservation);
