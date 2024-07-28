@@ -16,6 +16,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReservationService", "ReservationService", "{621E5B6E-907A-4179-87CD-9BB2EECDC571}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelFinder.API", "src\Services\HotelService\HotelFinder.API\HotelFinder.API.csproj", "{004A367A-2659-488F-9619-52E3D455E05D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F8BDA90E-65C9-4057-BF38-6FC79E8FF280} = {F8BDA90E-65C9-4057-BF38-6FC79E8FF280}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.API", "src\Services\ReservationService\Reservation.API\Reservation.API.csproj", "{3B0EEABD-2979-48C4-BFB5-6CC5638F674B}"
 EndProject
@@ -32,6 +35,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reservation.Entities", "src\Services\ReservationService\Reservation.Entities\Reservation.Entities.csproj", "{E6217695-A43A-4DD4-8510-78E69A549B1C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "src\ApiGateways\APIGateway\APIGateway.csproj", "{3A6B3915-5F59-4967-A3A2-D40793951466}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWebApp", "BlazorWebApp", "{6072DB29-BC2A-452D-86DF-84C795FC8B89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "src\Clients\BlazorWebApp\WebApp\WebApp.csproj", "{C1BC9CB2-AB27-4194-9307-87EAF78F4D38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +82,10 @@ Global
 		{3A6B3915-5F59-4967-A3A2-D40793951466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6B3915-5F59-4967-A3A2-D40793951466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6B3915-5F59-4967-A3A2-D40793951466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1BC9CB2-AB27-4194-9307-87EAF78F4D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1BC9CB2-AB27-4194-9307-87EAF78F4D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1BC9CB2-AB27-4194-9307-87EAF78F4D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1BC9CB2-AB27-4194-9307-87EAF78F4D38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +105,8 @@ Global
 		{BA7A3AD7-E6AF-4961-8B7B-AC0C245ED13A} = {621E5B6E-907A-4179-87CD-9BB2EECDC571}
 		{E6217695-A43A-4DD4-8510-78E69A549B1C} = {621E5B6E-907A-4179-87CD-9BB2EECDC571}
 		{3A6B3915-5F59-4967-A3A2-D40793951466} = {356BB6E6-8B80-403A-9CFD-57708CBE16EE}
+		{6072DB29-BC2A-452D-86DF-84C795FC8B89} = {1278DBEF-D8FC-4046-A87F-505054FEF138}
+		{C1BC9CB2-AB27-4194-9307-87EAF78F4D38} = {6072DB29-BC2A-452D-86DF-84C795FC8B89}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9425AFDB-992F-492B-B16D-B42F0173EA82}

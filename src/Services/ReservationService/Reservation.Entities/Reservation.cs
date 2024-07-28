@@ -13,5 +13,6 @@ namespace Reservation.Entities
         [Required]
         public DateTime Date { get; set; }
         public bool Status { get; set; }
+        
     }
 }

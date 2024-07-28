@@ -18,6 +18,9 @@ namespace APIGateway
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((host,config) => {
+                config.AddJsonFile("D:\\VStudioProjects\\HotelFinder\\src\\ApiGateways\\APIGateway\\ocelot.json");
+        })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

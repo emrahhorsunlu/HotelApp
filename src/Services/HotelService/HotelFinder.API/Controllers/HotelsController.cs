@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace HotelFinder.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController] // Validation işlemini kendisi bu sayede yapıyor.
+    [ApiController]
     public class HotelsController : ControllerBase
     {
         private IHotelService _hotelService;
