@@ -25,8 +25,6 @@ namespace Reservation.API
             services.AddControllers();
             services.AddSingleton<IReservationService, ReservationManager>();
             services.AddSingleton<IReservationRepository, ReservationRepository>();
-            services.AddSingleton<IHotelService, HotelManager>();
-            services.AddSingleton<IHotelRepository, HotelRepository>();
             services.AddSwaggerDocument(config =>
             {
                 config.PostProcess = (doc =>

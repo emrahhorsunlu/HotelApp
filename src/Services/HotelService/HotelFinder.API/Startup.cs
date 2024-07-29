@@ -5,6 +5,7 @@ using HotelFinder.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -21,6 +22,7 @@ namespace HotelFinder.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+   
             services.AddSingleton<IHotelService, HotelManager>();
             services.AddSingleton<IHotelRepository, HotelRepository>();
             services.AddSwaggerDocument(config =>

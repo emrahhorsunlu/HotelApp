@@ -2,8 +2,10 @@
 using HotelFinder.Entities;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
@@ -13,93 +15,163 @@ namespace HotelFinder.DataAccess.Concrete
 {
     public class HotelRepository : IHotelRepository
     {
-        
+        private readonly IConfiguration _configuration;
+        private readonly string connectionString;
+
+        public HotelRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            connectionString = _configuration.GetConnectionString("MainConnection");
+        }
+
         public Hotel CreateHotel(Hotel hotel)
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using (var connection = new SqlConnection(connectionString))
             {
-                var command = hotelDbContext.Database.GetDbConnection().CreateCommand();
-                command.CommandText = "CreateHotel";
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-
-                command.Parameters.Add(new SqlParameter("@Name", hotel.Name));
-                command.Parameters.Add(new SqlParameter("@City", hotel.City));
-                var newHotelIdParameter = new SqlParameter
+                using (var command = new SqlCommand("CreateHotel", connection))
                 {
-                    ParameterName = "@NewHotelId",
-                    SqlDbType = System.Data.SqlDbType.Int,
-                    Direction = System.Data.ParameterDirection.Output
-                };
-                command.Parameters.Add(newHotelIdParameter);
+                    command.CommandType = CommandType.StoredProcedure;
 
-                hotelDbContext.Database.OpenConnection();
-                command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@Name", hotel.Name);
+                    command.Parameters.AddWithValue("@City", hotel.City);
+                    var newHotelIdParameter = new SqlParameter
+                    {
+                        ParameterName = "@NewHotelId",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(newHotelIdParameter);
 
-                hotel.Id = (int)newHotelIdParameter.Value;
+                    connection.Open();
+                    command.ExecuteNonQuery();
 
-                return hotel;
+                    hotel.Id = (int)newHotelIdParameter.Value;
+
+                    return hotel;
+                }
             }
         }
 
         public void DeleteHotel(int id)
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using (var connection = new SqlConnection(connectionString))
             {
-                hotelDbContext.Database.ExecuteSqlInterpolated($"EXEC DeleteHotelById {id}");
+                using (var command = new SqlCommand("DeleteHotelById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
         public List<Hotel> GetAllHotels()
         {
-            using (var hotelDbContext = new HotelDbContext())
+            var hotels = new List<Hotel>();
+
+            using (var connection = new SqlConnection(connectionString))
             {
-                var hotels = hotelDbContext.Hotels
-                                           .FromSqlInterpolated($"EXEC GetAllHotels")
-                                           .ToList();
-                return hotels;
+                using (var command = new SqlCommand("GetAllHotels", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var hotel = new Hotel
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                City = reader.GetString(reader.GetOrdinal("City"))
+                            };
+                            hotels.Add(hotel);
+                        }
+                    }
+                }
             }
+            return hotels;
         }
 
         public Hotel GetHotelById(int id)
         {
-            using (var hotelDbContext = new HotelDbContext())
-            {
-                var hotels = hotelDbContext.Hotels
-                                           .FromSqlInterpolated($"EXEC GetHotelById {id}")
-                                           .AsEnumerable();
+            Hotel hotel = null;
 
-                var hotel = hotels.FirstOrDefault();
-                return hotel;
+            using (var connection = new SqlConnection(connectionString))
+            {
+                using (var command = new SqlCommand("GetHotelById", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            hotel = new Hotel
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                City = reader.GetString(reader.GetOrdinal("City"))
+                            };
+                        }
+                    }
+                }
             }
+            return hotel;
         }
 
         public Hotel GetHotelByName(string name)
         {
-            using (var hotelDbContext = new HotelDbContext())
-            {
-                var hotels = hotelDbContext.Hotels
-                                           .FromSqlInterpolated($"EXEC GetHotelByName {name}")
-                                           .AsEnumerable();
+            Hotel hotel = null;
 
-                var hotel = hotels.FirstOrDefault();
-                return hotel;
+            using (var connection = new SqlConnection(connectionString))
+            {
+                using (var command = new SqlCommand("GetHotelByName", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Name", name);
+
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            hotel = new Hotel
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                City = reader.GetString(reader.GetOrdinal("City"))
+                            };
+                        }
+                    }
+                }
             }
+            return hotel;
         }
 
         public Hotel UpdateHotel(Hotel hotel)
         {
-            using (var hotelDbContext = new HotelDbContext())
+            using (var connection = new SqlConnection(connectionString))
             {
-                var idParameter = new SqlParameter("@Id", hotel.Id);
-                var nameParameter = new SqlParameter("@Name", hotel.Name);
-                var cityParameter = new SqlParameter("@City", hotel.City);
+                using (var command = new SqlCommand("UpdateHotel", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
 
-                hotelDbContext.Database.ExecuteSqlRaw(
-                    "EXEC UpdateHotel @Id, @Name, @City",
-                    idParameter, nameParameter, cityParameter);
+                    command.Parameters.AddWithValue("@Id", hotel.Id);
+                    command.Parameters.AddWithValue("@Name", hotel.Name);
+                    command.Parameters.AddWithValue("@City", hotel.City);
 
-                return hotel;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
             }
+            return hotel;
         }
     }
 }
