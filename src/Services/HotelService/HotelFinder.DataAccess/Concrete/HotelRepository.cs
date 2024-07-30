@@ -1,7 +1,6 @@
 ﻿using HotelFinder.DataAccess.Abstract;
 using HotelFinder.Entities;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
